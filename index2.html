@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"/>
+<title>Amalareegan A — Digital Marketing Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{--navy:#0D1B2A;--navy-light:#1A2E45;--gold:#C9A84C;--gold-light:#E8C97E;--cream:#F5F2EC;--white:#FFFFFF;--text-muted:#6B7280;--border:#E5E0D8;}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--navy);line-height:1.6;font-size:16px;}
+
+/* NAV */
+nav{background:var(--navy);padding:1rem 2rem;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.nav-logo{font-family:'Playfair Display',serif;color:var(--gold);font-size:1.1rem;letter-spacing:0.04em;}
+.nav-links{display:flex;gap:1.2rem;flex-wrap:wrap;}
+.nav-links a{color:#B0BEC5;text-decoration:none;font-size:0.75rem;letter-spacing:0.06em;text-transform:uppercase;transition:color 0.2s;}
+.nav-links a:hover{color:var(--gold);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:22px;height:2px;background:var(--gold);border-radius:2px;}
+.mobile-menu{display:none;flex-direction:column;background:var(--navy-light);padding:1rem 2rem;gap:1rem;border-top:1px solid rgba(255,255,255,0.08);}
+.mobile-menu a{color:#B0BEC5;text-decoration:none;font-size:0.9rem;letter-spacing:0.06em;text-transform:uppercase;padding:0.4rem 0;border-bottom:1px solid rgba(255,255,255,0.06);}
+.mobile-menu.open{display:flex;}
+
+/* HERO */
+.hero{background:var(--navy);padding:4rem 2rem 3rem;position:relative;overflow:hidden;}
+.hero::before{content:'';position:absolute;top:-60px;right:-60px;width:250px;height:250px;border:1px solid rgba(201,168,76,0.12);border-radius:50%;}
+.hero-top{display:flex;align-items:flex-start;gap:1.5rem;}
+.hero-avatar{width:64px;height:64px;border-radius:50%;background:var(--gold);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:1.3rem;color:var(--navy);flex-shrink:0;border:3px solid rgba(201,168,76,0.3);}
+.hero-text{flex:1;min-width:0;}
+.hero-badge{display:inline-block;border:1px solid var(--gold);color:var(--gold);font-size:0.65rem;letter-spacing:0.1em;text-transform:uppercase;padding:0.3rem 0.8rem;border-radius:2px;margin-bottom:0.8rem;}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(1.6rem,5vw,2.8rem);color:var(--white);line-height:1.2;margin-bottom:0.4rem;}
+.hero h1 span{color:var(--gold);}
+.hero-company{color:var(--gold-light);font-size:0.88rem;margin-bottom:0.4rem;}
+.hero-company strong{color:var(--gold);}
+.hero-sub{color:#90A4AE;font-size:0.88rem;margin-bottom:1.5rem;font-weight:300;line-height:1.6;}
+.hero-contact-row{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.5rem;}
+.hero-contact-item{display:flex;align-items:center;gap:0.5rem;color:#90A4AE;font-size:0.8rem;}
+.hero-contact-item a{color:#90A4AE;text-decoration:none;}
+.hero-contact-item a:hover{color:var(--gold);}
+.hero-contact-dot{width:5px;height:5px;background:var(--gold);border-radius:50%;flex-shrink:0;}
+.hero-actions{display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:2.5rem;}
+.btn-primary{background:var(--gold);color:var(--navy);padding:0.75rem 1.5rem;font-size:0.85rem;font-weight:500;border:none;cursor:pointer;letter-spacing:0.04em;border-radius:2px;text-decoration:none;display:inline-block;}
+.btn-outline{background:transparent;color:var(--gold);padding:0.75rem 1.5rem;font-size:0.85rem;font-weight:500;border:1px solid var(--gold);cursor:pointer;letter-spacing:0.04em;border-radius:2px;text-decoration:none;display:inline-block;}
+.hero-stats{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;padding-top:1.5rem;border-top:1px solid rgba(255,255,255,0.08);}
+.stat-num{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--gold);}
+.stat-label{font-size:0.65rem;color:#90A4AE;text-transform:uppercase;letter-spacing:0.06em;margin-top:0.1rem;}
+
+/* SECTIONS */
+section{padding:3rem 2rem;}
+.section-tag{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.4rem;font-weight:500;}
+.section-title{font-family:'Playfair Display',serif;font-size:clamp(1.4rem,4vw,1.9rem);color:var(--navy);margin-bottom:0.5rem;}
+.section-sub{color:var(--text-muted);font-size:0.88rem;margin-bottom:1.8rem;line-height:1.6;}
+
+/* WORK */
+.work-bg{background:var(--white);}
+.work-card{border:1px solid var(--border);border-radius:4px;padding:1.5rem;background:var(--cream);}
+.work-header{display:flex;flex-direction:column;gap:0.6rem;margin-bottom:1.2rem;}
+.company-badge{display:inline-block;background:var(--navy);color:var(--gold);font-size:0.75rem;font-weight:500;padding:0.35rem 0.9rem;border-radius:2px;letter-spacing:0.06em;width:fit-content;}
+.work-title{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--navy);}
+.work-location{font-size:0.78rem;color:var(--text-muted);}
+.work-skills{display:grid;grid-template-columns:1fr;gap:0.7rem;margin-top:1rem;}
+.work-skill{background:var(--white);border:1px solid var(--border);border-radius:3px;padding:0.8rem 1rem;display:flex;align-items:center;gap:0.7rem;}
+.work-skill-dot{width:7px;height:7px;background:var(--gold);border-radius:50%;flex-shrink:0;}
+.work-skill-text{font-size:0.85rem;font-weight:500;color:var(--navy);}
+
+/* SKILLS TAGS */
+.skills-full-bg{background:var(--cream);}
+.skills-categories{display:grid;grid-template-columns:1fr;gap:1.2rem;}
+.skill-category{border:1px solid var(--border);border-radius:4px;padding:1.3rem;background:var(--white);}
+.skill-cat-title{font-size:0.72rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.8rem;font-weight:500;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.5rem;}
+.skill-tag{background:var(--cream);border:1px solid var(--border);border-radius:2px;padding:0.3rem 0.7rem;font-size:0.78rem;color:var(--navy);}
+
+/* SHOWCASE TABS */
+.showcase-bg{background:var(--white);}
+.tab-buttons{display:grid;grid-template-columns:repeat(2,1fr);gap:0.5rem;margin-bottom:1.5rem;}
+.tab-btn{padding:0.6rem 0.5rem;font-size:0.78rem;border:1px solid var(--border);background:transparent;color:var(--text-muted);border-radius:2px;cursor:pointer;transition:all 0.2s;font-family:'DM Sans',sans-serif;text-align:center;}
+.tab-btn.active{background:var(--navy);color:var(--gold);border-color:var(--navy);}
+.tab-panel{display:none;}
+.tab-panel.active{display:block;}
+.screenshots-grid{display:grid;grid-template-columns:1fr;gap:1rem;}
+.ss-card{border:1px solid var(--border);border-radius:4px;overflow:hidden;background:var(--cream);}
+.ss-frame{width:100%;height:200px;border:none;display:block;background:var(--navy);}
+.ss-info{padding:0.7rem 1rem;}
+.ss-info p{font-size:0.78rem;color:var(--text-muted);}
+
+/* VIDEOS */
+.videos-bg{background:var(--cream);}
+.videos-grid{display:grid;grid-template-columns:1fr;gap:1.2rem;}
+.video-card{background:var(--white);border:1px solid var(--border);border-radius:4px;overflow:hidden;}
+.video-label{background:var(--navy);color:var(--gold);font-size:0.7rem;font-weight:500;padding:0.45rem 1rem;letter-spacing:0.06em;text-transform:uppercase;display:flex;justify-content:space-between;align-items:center;}
+.video-label span{color:#90A4AE;font-size:0.65rem;text-transform:none;letter-spacing:0;}
+.video-frame-wrap{position:relative;width:100%;padding-top:56.25%;background:#000;}
+.video-frame-wrap iframe{position:absolute;top:0;left:0;width:100%;height:100%;border:none;}
+.video-info{padding:0.8rem 1rem;}
+.video-info h4{font-size:0.88rem;font-weight:500;margin-bottom:0.2rem;color:var(--navy);}
+.video-info p{font-size:0.75rem;color:var(--text-muted);line-height:1.5;}
+
+/* SKILL BARS */
+.skillbar-bg{background:var(--navy);}
+.skillbar-bg .section-title{color:var(--white);}
+.skillbar-bg .section-sub{color:#90A4AE;}
+.skills-grid{display:grid;grid-template-columns:1fr;gap:0.9rem;}
+.skill-item{border:1px solid rgba(255,255,255,0.08);padding:1.1rem;border-radius:3px;}
+.skill-name{color:var(--white);font-size:0.85rem;font-weight:500;margin-bottom:0.6rem;}
+.skill-bar-bg{height:3px;background:rgba(255,255,255,0.1);border-radius:2px;overflow:hidden;}
+.skill-bar{height:100%;background:var(--gold);border-radius:2px;}
+.skill-pct{font-size:0.7rem;color:var(--gold);margin-top:0.3rem;}
+
+/* CONTACT */
+.contact-bg{background:var(--navy);text-align:center;}
+.contact-bg .section-title{color:var(--white);}
+.contact-bg .section-sub{color:#90A4AE;margin:0 auto 1.5rem;}
+.contact-cards{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.5rem;}
+.contact-card{background:var(--navy-light);border:1px solid rgba(201,168,76,0.2);border-radius:4px;padding:1rem;}
+.contact-card span{display:block;font-size:0.65rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--gold);margin-bottom:0.3rem;}
+.contact-card a{color:#B0BEC5;text-decoration:none;font-size:0.78rem;word-break:break-all;}
+.contact-card a:hover{color:var(--gold);}
+.contact-card p{color:#B0BEC5;font-size:0.78rem;}
+
+footer{background:#0A1520;padding:1.2rem 2rem;display:flex;flex-direction:column;align-items:center;gap:0.8rem;text-align:center;}
+footer p{font-size:0.74rem;color:#4A5568;}
+.footer-links{display:flex;gap:1.5rem;}
+.footer-links a{font-size:0.74rem;color:#4A5568;text-decoration:none;}
+.footer-links a:hover{color:var(--gold);}
+
+/* TABLET - 600px+ */
+@media(min-width:600px){
+  nav{padding:1.2rem 2.5rem;}
+  .hamburger{display:none;}
+  .nav-links{display:flex;}
+  section{padding:3.5rem 2.5rem;}
+  .hero{padding:5rem 2.5rem 4rem;}
+  .hero-contact-row{flex-direction:row;flex-wrap:wrap;}
+  .work-skills{grid-template-columns:repeat(2,1fr);}
+  .skills-categories{grid-template-columns:repeat(2,1fr);}
+  .tab-buttons{grid-template-columns:repeat(4,1fr);}
+  .screenshots-grid{grid-template-columns:repeat(2,1fr);}
+  .videos-grid{grid-template-columns:repeat(2,1fr);}
+  .skills-grid{grid-template-columns:repeat(2,1fr);}
+  .contact-cards{grid-template-columns:repeat(2,1fr);}
+  footer{flex-direction:row;justify-content:space-between;text-align:left;}
+}
+
+/* DESKTOP - 900px+ */
+@media(min-width:900px){
+  nav{padding:1.2rem 3rem;}
+  section{padding:3.5rem 3rem;}
+  .hero{padding:5rem 3rem 4rem;}
+  .hero-top{gap:2.5rem;}
+  .hero-avatar{width:80px;height:80px;font-size:1.6rem;}
+  .hero-stats{grid-template-columns:repeat(4,1fr);}
+  .work-skills{grid-template-columns:repeat(3,1fr);}
+  .skills-categories{grid-template-columns:repeat(4,1fr);}
+  .screenshots-grid{grid-template-columns:repeat(3,1fr);}
+  .videos-grid{grid-template-columns:repeat(3,1fr);}
+  .skills-grid{grid-template-columns:repeat(4,1fr);}
+  .contact-cards{grid-template-columns:repeat(4,1fr);}
+  footer{padding:1.3rem 3rem;}
+}
+
+/* MOBILE ONLY - hide desktop nav */
+@media(max-width:599px){
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">Amalareegan A </div>
+  <div class="nav-links">
+    <a href="#work">Experience</a>
+    <a href="#skills">Skills</a>
+    <a href="#showcase">Work</a>
+    <a href="#videos">Videos</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <div class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#work" onclick="closeMenu()">Experience</a>
+  <a href="#skills" onclick="closeMenu()">Skills</a>
+  <a href="#showcase" onclick="closeMenu()">Work</a>
+  <a href="#videos" onclick="closeMenu()">Videos</a>
+  <a href="#contact" onclick="closeMenu()">Contact</a>
+</div>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-top">
+    <div class="hero-avatar">AR</div>
+    <div class="hero-text">
+      <div class="hero-badge">Digital Marketing Specialist</div>
+      <h1>Amalareegan <span>A</span></h1>
+      <p class="hero-company">Currently at <strong>Login360</strong> — Velachery, Chennai</p>
+      <p class="hero-sub">Driving brand growth through Meta Ads, content creation, social media strategy, CRM management, and data-driven campaign execution.</p>
+      <div class="hero-contact-row">
+        <div class="hero-contact-item"><div class="hero-contact-dot"></div><a href="mailto:amalareegan735@gmail.com">amalareegan735@gmail.com</a></div>
+        <div class="hero-contact-item"><div class="hero-contact-dot"></div><a href="https://www.linkedin.com/in/amalareegan-a-722633336/" target="_blank">LinkedIn Profile</a></div>
+        <div class="hero-contact-item"><div class="hero-contact-dot"></div>Velachery, Chennai</div>
+      </div>
+      <div class="hero-actions">
+        <a href="mailto:amalareegan735@gmail.com" class="btn-primary">Get In Touch</a>
+        <a href="https://www.linkedin.com/in/amalareegan-a-722633336/" target="_blank" class="btn-outline">LinkedIn</a>
+      </div>
+    </div>
+  </div>
+  <div class="hero-stats">
+    <div><div class="stat-num">Meta</div><div class="stat-label">Ads Management</div></div>
+    <div><div class="stat-num">Social</div><div class="stat-label">Media Handling</div></div>
+    <div><div class="stat-num">CRM</div><div class="stat-label">Follow-up Tracking</div></div>
+    <div><div class="stat-num">Video</div><div class="stat-label">Content Creation</div></div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work-bg" id="work">
+  <div class="section-tag">Experience</div>
+  <div class="section-title">Current Role</div>
+  <p class="section-sub">Hands-on digital marketing experience at Login360, Velachery.</p>
+  <div class="work-card">
+    <div class="work-header">
+      <span class="company-badge">Login360 — Velachery</span>
+      <div class="work-title">Digital Marketing Executive</div>
+      <div class="work-location">Velachery, Chennai &nbsp;|&nbsp; Present</div>
+    </div>
+    <div class="work-skills">
+      <div class="work-skill"><div class="work-skill-dot"></div><div class="work-skill-text">Content Creation & Writing</div></div>
+      <div class="work-skill"><div class="work-skill-dot"></div><div class="work-skill-text">Meta Ads — Lead & Engagement Campaigns</div></div>
+      <div class="work-skill"><div class="work-skill-dot"></div><div class="work-skill-text">Social Media Handling</div></div>
+      <div class="work-skill"><div class="work-skill-dot"></div><div class="work-skill-text">CRM Follow-up Checking</div></div>
+      <div class="work-skill"><div class="work-skill-dot"></div><div class="work-skill-text">Excel — Meta Ad Data Maintenance</div></div>
+      <div class="work-skill"><div class="work-skill-dot"></div><div class="work-skill-text">Camera Handling & Video Presenting</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS TAGS -->
+<section class="skills-full-bg" id="skills">
+  <div class="section-tag">Expertise</div>
+  <div class="section-title">Skills & Tools</div>
+  <p class="section-sub">From digital marketing to tech — built through real work experience.</p>
+  <div class="skills-categories">
+    <div class="skill-category">
+      <div class="skill-cat-title">Digital Marketing</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Meta Ads Manager</span>
+        <span class="skill-tag">Lead Campaign Creation</span>
+        <span class="skill-tag">Engagement Campaign</span>
+        <span class="skill-tag">Social Media Handling</span>
+        <span class="skill-tag">Content Writing</span>
+        <span class="skill-tag">Content Creation</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">CRM & Data</div>
+      <div class="skill-tags">
+        <span class="skill-tag">CRM Follow-up</span>
+        <span class="skill-tag">Excel Maintenance</span>
+        <span class="skill-tag">Meta Ad Data</span>
+        <span class="skill-tag">Lead Tracking</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">Tech & Development</div>
+      <div class="skill-tags">
+        <span class="skill-tag">HTML</span>
+        <span class="skill-tag">CSS</span>
+        <span class="skill-tag">JavaScript</span>
+        <span class="skill-tag">Java — Basic OOP</span>
+      </div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-cat-title">Media & Production</div>
+      <div class="skill-tags">
+        <span class="skill-tag">Camera Handling</span>
+        <span class="skill-tag">Video Presenting</span>
+        <span class="skill-tag">Screen Recording</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHOWCASE TABS -->
+<section class="showcase-bg" id="showcase">
+  <div class="section-tag">Portfolio</div>
+  <div class="section-title">Work Showcase</div>
+  <p class="section-sub">Real screenshots from work done at Login360 — tap each tab to view.</p>
+  <div class="tab-buttons">
+    <button class="tab-btn active" onclick="showTab('content',this)">Content</button>
+    <button class="tab-btn" onclick="showTab('meta',this)">Meta Ads</button>
+    <button class="tab-btn" onclick="showTab('excel',this)">Excel</button>
+    <button class="tab-btn" onclick="showTab('crm',this)">CRM</button>
+  </div>
+
+  <div class="tab-panel active" id="tab-content">
+    <div class="screenshots-grid">
+      <div class="ss-card">
+        <iframe class="ss-frame" src="https://drive.google.com/file/d/1nW1R4dsBmiJY9mY-zMANELB3FyshvjV3/preview" allowfullscreen></iframe>
+        <div class="ss-info"><p>Content written for brand campaigns at Login360</p></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-meta">
+    <div class="screenshots-grid">
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/1tnDuADPizCbY73Z8K4V_fcyrJTYV-r0j/preview" allowfullscreen></iframe><div class="ss-info"><p>Meta Ads Manager — Campaign setup</p></div></div>
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/1PwUq4zYUv8aTjex4HKHcM6A4keOBgVpG/preview" allowfullscreen></iframe><div class="ss-info"><p>Meta Ads — Ad set and targeting</p></div></div>
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/1AM0PBuEJHAxCUDPFCCkPvHafviE6ZlSd/preview" allowfullscreen></iframe><div class="ss-info"><p>Meta Ads — Campaign performance</p></div></div>
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/1e0B7gNvOwhhi3QrTTAGvyvEnEa5T9Oo-/preview" allowfullscreen></iframe><div class="ss-info"><p>Meta Ads — Lead campaign creation</p></div></div>
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/18xQflco40cuG_u1bFEQUihHHEyFx1Xao/preview" allowfullscreen></iframe><div class="ss-info"><p>Meta Ads — Engagement campaign</p></div></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-excel">
+    <div class="screenshots-grid">
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/1mONdzRRT79nvEA0C9CKy-4-aKtVwOCxE/preview" allowfullscreen></iframe><div class="ss-info"><p>Excel — Meta ad data maintenance</p></div></div>
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/13iS9lsSPoOJdUS2LLKdRDulKdTnY8A7e/preview" allowfullscreen></iframe><div class="ss-info"><p>Excel — Campaign tracking data</p></div></div>
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/1ScGLCPmkVIXXIgc1UFNwptucs_Tpv7BB/preview" allowfullscreen></iframe><div class="ss-info"><p>Excel — Lead and performance log</p></div></div>
+    </div>
+  </div>
+
+  <div class="tab-panel" id="tab-crm">
+    <div class="screenshots-grid">
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/1PEJBJAFbinaO6ArImSN115K6UOY4S4xq/preview" allowfullscreen></iframe><div class="ss-info"><p>CRM — Lead follow-up pipeline</p></div></div>
+      <div class="ss-card"><iframe class="ss-frame" src="https://drive.google.com/file/d/1-V33KJLQi2vo-GM8ujJBHpqWfnabKmUy/preview" allowfullscreen></iframe><div class="ss-info"><p>CRM — Follow-up status tracking</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- VIDEOS -->
+<section class="videos-bg" id="videos">
+  <div class="section-tag">Video Portfolio</div>
+  <div class="section-title">Content Videos</div>
+  <p class="section-sub">Videos created and presented at Login360.</p>
+  <div class="videos-grid">
+    <div class="video-card"><div class="video-label">Content Creation <span>Website</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/1kpJoLfmZvrn8yFmrWvhF2pNnOMV8yEi4/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>Website Content Video</h4><p>Content for website-related campaigns.</p></div></div>
+    <div class="video-card"><div class="video-label">Digital Marketing <span>Earning</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/1xxr4VQLK_wjavkpd_mM0xJ8XewFYJQ_X/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>Digital Marketing & Earning</h4><p>Marketing strategies and earning potential.</p></div></div>
+    <div class="video-card"><div class="video-label">UI/UX <span>Design</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/1w940RTPlzzH67OXNd9moD6f0GFnxUhri/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>UI/UX Designer Content</h4><p>UI/UX design concepts for social media.</p></div></div>
+    <div class="video-card"><div class="video-label">IT Jobs <span>High Paying</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/1_j5A8oVBxm3qMja6iU3P0sxBMXiZ1r6A/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>High Paying IT Jobs</h4><p>Educational content on IT career paths.</p></div></div>
+    <div class="video-card"><div class="video-label">E-Commerce <span>Amazon & Flipkart</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/1ed5gcZm_7SqAw6yBvQf0KJUosL3Iptyd/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>Amazon & Flipkart UI</h4><p>E-commerce platform UI/UX comparison.</p></div></div>
+    <div class="video-card"><div class="video-label">Tech <span>Encryption</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/1vGU836yaGJYFSSxv74r8wogNNMkcA4PR/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>Encryption Explained</h4><p>Encryption concepts for general audiences.</p></div></div>
+    <div class="video-card"><div class="video-label">Tech <span>IoT</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/1MRGB8URCNm6Zour-QeS9CLM8Gk410jTS/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>IoT Content Video</h4><p>Internet of Things explained simply.</p></div></div>
+    <div class="video-card"><div class="video-label">Presentation <span>PPT</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/13XH-JkdQ-haXuKyJ9fKwSO-JQ1mcm1D5/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>PPT Presentation Video</h4><p>PowerPoint content for training use.</p></div></div>
+    <div class="video-card"><div class="video-label">Awareness <span>Phone</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/1jaDczNu8EEZk7ka1USn_6jWZRi94d1jv/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>Phone Waste Awareness</h4><p>Responsible phone usage awareness.</p></div></div>
+    <div class="video-card"><div class="video-label">Tech <span>OOP</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/1-GpQm4hV9REOYqxNex_jbtwZo6VAxMsn/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>Polymorphism Concept</h4><p>OOP concept for beginners.</p></div></div>
+    <div class="video-card"><div class="video-label">Career <span>Interview</span></div><div class="video-frame-wrap"><iframe src="https://drive.google.com/file/d/16lhsePn2T7--uXKH7QoWXLGZuE_b0xCS/preview" allow="autoplay" allowfullscreen></iframe></div><div class="video-info"><h4>Interview Mistake Awareness</h4><p>Common interview mistakes to avoid.</p></div></div>
+  </div>
+</section>
+
+<!-- SKILL BARS -->
+<section class="skillbar-bg">
+  <div class="section-tag" style="color:var(--gold-light);">Proficiency</div>
+  <div class="section-title">Skill Levels</div>
+  <p class="section-sub">Proficiency across tools and platforms.</p>
+  <div class="skills-grid">
+    <div class="skill-item"><div class="skill-name">Meta Ads Manager</div><div class="skill-bar-bg"><div class="skill-bar" style="width:88%"></div></div><div class="skill-pct">Advanced</div></div>
+    <div class="skill-item"><div class="skill-name">Content Creation & Writing</div><div class="skill-bar-bg"><div class="skill-bar" style="width:90%"></div></div><div class="skill-pct">Expert</div></div>
+    <div class="skill-item"><div class="skill-name">Social Media Management</div><div class="skill-bar-bg"><div class="skill-bar" style="width:88%"></div></div><div class="skill-pct">Advanced</div></div>
+    <div class="skill-item"><div class="skill-name">CRM Follow-up</div><div class="skill-bar-bg"><div class="skill-bar" style="width:82%"></div></div><div class="skill-pct">Advanced</div></div>
+    <div class="skill-item"><div class="skill-name">Excel Data Management</div><div class="skill-bar-bg"><div class="skill-bar" style="width:80%"></div></div><div class="skill-pct">Advanced</div></div>
+    <div class="skill-item"><div class="skill-name">HTML / CSS / JavaScript</div><div class="skill-bar-bg"><div class="skill-bar" style="width:72%"></div></div><div class="skill-pct">Intermediate</div></div>
+    <div class="skill-item"><div class="skill-name">Java — OOP Basics</div><div class="skill-bar-bg"><div class="skill-bar" style="width:65%"></div></div><div class="skill-pct">Basic</div></div>
+    <div class="skill-item"><div class="skill-name">Camera & Video Presenting</div><div class="skill-bar-bg"><div class="skill-bar" style="width:85%"></div></div><div class="skill-pct">Advanced</div></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-bg" id="contact">
+  <div class="section-tag" style="color:var(--gold-light);">Let's Connect</div>
+  <div class="section-title">Get In Touch</div>
+  <p class="section-sub">Open to freelance, collaborations, and new opportunities.</p>
+  <a href="mailto:amalareegan735@gmail.com" class="btn-primary">Send Me an Email</a>
+  <div class="contact-cards">
+    <div class="contact-card"><span>Email</span><a href="mailto:amalareegan735@gmail.com">amalareegan735@gmail.com</a></div>
+    <div class="contact-card"><span>LinkedIn</span><a href="https://www.linkedin.com/in/amalareegan-a-722633336/" target="_blank">Amalareegan A.</a></div>
+    <div class="contact-card"><span>Location</span><p>Velachery, Chennai</p></div>
+    <div class="contact-card"><span>Available For</span><p>Freelance & Full-Time</p></div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Amalareegan A. All rights reserved.</p>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/amalareegan-a-722633336/" target="_blank">LinkedIn</a>
+    <a href="mailto:amalareegan735@gmail.com">Email</a>
+  </div>
+</footer>
+
+<script>
+function showTab(tab, el) {
+  var panels = document.querySelectorAll('.tab-panel');
+  for (var i = 0; i < panels.length; i++) panels[i].classList.remove('active');
+  var btns = document.querySelectorAll('.tab-btn');
+  for (var j = 0; j < btns.length; j++) btns[j].classList.remove('active');
+  document.getElementById('tab-' + tab).classList.add('active');
+  el.classList.add('active');
+}
+function toggleMenu() {
+  var menu = document.getElementById('mobileMenu');
+  menu.classList.toggle('open');
+}
+function closeMenu() {
+  document.getElementById('mobileMenu').classList.remove('open');
+}
+</script>
+
+</body>
+</html>
